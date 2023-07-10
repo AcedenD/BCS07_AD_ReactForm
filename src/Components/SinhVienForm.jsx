@@ -16,6 +16,8 @@ class SinhVienForm extends Component {
     },
 
     isActive: true,
+
+    isActiveCapNhat: false,
   };
 
   changeActiveButton = () => {
@@ -143,6 +145,7 @@ class SinhVienForm extends Component {
       sinhVienState: newSinhVienState,
       errorState: newErrorState,
       isActive: valid,
+      isActiveCapNhat: !valid,
     });
   };
 
@@ -164,7 +167,7 @@ class SinhVienForm extends Component {
     this.resetFields();
   };
   render() {
-    // console.log(this.props.hocSinh.sinhVien);
+    console.log(this.props.sinhVien.isEdit);
     return (
       <div className="container mx-auto">
         <Header />
@@ -265,11 +268,12 @@ class SinhVienForm extends Component {
               let sinhVien = { ...this.state.sinhVienState };
               this.props.suaSinhVien(sinhVien);
               this.changeActiveButton();
+              this.resetFields();
               this.props.sinhVien.isEdit = false;
             }}
             type="button"
             className={`text-black bg-yellow-300 hover:bg-yellow-400 rounded-lg px-5 py-2.5 text-center disabled:cursor-not-allowed`}
-            // disabled={!this.state.isActive}
+            disabled={!this.state.isActiveCapNhat}
           >
             Cập nhật
           </button>
